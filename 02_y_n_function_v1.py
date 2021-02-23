@@ -1,6 +1,6 @@
 
 
-# Function
+# Functions go here...
 def yes_no(question):
     valid = False
     while not valid:

@@ -1,3 +1,4 @@
+import random
 
 
 # Functions go here
@@ -20,7 +21,7 @@ def yes_no(question):
 def instructions():
     print("**** How to Play ****")
     print()
-    print("The rules of the game go here")
+    print("")
     print()
     return""
 
@@ -44,7 +45,23 @@ def num_check(question, low, high):
             print(error)
 
 
+def statement_generator(statement, decoration):
+
+            sides = decoration * 3
+
+            statement = "{} {} {}".format(sides, statement, sides)
+            top_bottom = decoration * len(statement)
+
+            print(top_bottom)
+            print(statement)
+            print(top_bottom)
+
+            return ""
+
 # Main Routine goes here...
+statement_generator("Welcome to the Lucky Unicorn Game", "*")
+print()
+
 played_before = yes_no("Have you played this game before? ")
 print("You chose {}".format(played_before))
 print()
@@ -56,4 +73,55 @@ if __name__ == '__main__':
 
 # Ask user how much they want to play with..
 how_much = num_check("How much would you like to play with? ", 0, 10)
-print("You will be spending ${}".format(how_much))
+print()
+
+# balance
+balance = how_much
+
+rounds_played = 0
+
+play_again = input("Press <Enter> to play...").lower()
+while play_again == "":
+
+    # increase # of rounds played
+    rounds_played += 1
+
+    # print round number
+    print()
+    print("***  Round #{}  ***".format(rounds_played))
+    chosen_num = random.randint(1, 100)
+
+    # adjust balance
+    if 1 <= chosen_num <= 5:
+        chosen = "unicorn"
+        prize_decoration = "!"
+        balance += 4
+    elif 6 <= chosen_num <= 36:
+        chosen = "donkey"
+        prize_decoration = "-"
+        balance -= 1
+    else:
+        if chosen_num % 2 == 0:
+            chosen = "horse"
+            prize_decoration = "H"
+        else:
+            chosen = "zebra"
+            prize_decoration = "Z"
+        balance -= 0.5
+
+    outcome = ("You got a {}. Your balance is ${:.2f}".format(chosen, balance))
+
+    statement_generator(outcome, prize_decoration)
+
+    if balance < 1:
+        play_again = "xxx"
+        print("Sorry, you ran out of money")
+
+    else:
+        play_again = input("Press enter to play again or 'xxx' to quit. ")
+
+print()
+print("Final balance: ${:.2f}".format(balance))
+print()
+
+statement_generator("   Thanks for playing !!   ", "*")

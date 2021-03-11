@@ -21,7 +21,10 @@ def yes_no(question):
 def instructions():
     print("**** How to Play ****")
     print()
-    print("")
+    print("The rules of this game is simple. Enter the amount you'd like to play with. ")
+    print("When you begin playing, you'll receive a token. There are four tokens, Unicorn, ")
+    print("which is worth $4. Zebra and Horse, which are both worth -50 cents. And donkey,")
+    print("which is -$1. Play until you are satisfied, or until you run out of money. Have fun!")
     print()
     return""
 
